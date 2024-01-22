@@ -1,3 +1,5 @@
 database:
   URL: "user=postgres password=12345 dbname=email-db sslmode=disable"
+mail:
+  user: "ilkerbedir98@gmail.com"
 

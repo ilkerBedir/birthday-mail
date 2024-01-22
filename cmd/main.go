@@ -5,6 +5,7 @@ import (
 	"log"
 	"project/birthday-mail/internal/config"
 	"project/birthday-mail/internal/database"
+	"project/birthday-mail/internal/mail"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -21,8 +22,5 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	for _, v := range users {
-		fmt.Println(v)
-	}
-
+	mail.SendMail(users[0])
 }

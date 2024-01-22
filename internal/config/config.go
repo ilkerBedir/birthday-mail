@@ -9,9 +9,13 @@ import (
 )
 
 type Config struct {
-	Database struct {
+	MAIL_PASSWORD string
+	Database      struct {
 		URL string `yaml:"URL"`
 	} `yaml:"database"`
+	Mail struct {
+		User string `yaml:"user"`
+	} `yaml:"mail"`
 }
 
 var config *Config
@@ -32,6 +36,7 @@ func GetConfig() *Config {
 		if err != nil {
 			log.Fatalln("Conf yüklenmedi : ", err)
 		}
+		config.MAIL_PASSWORD = os.Getenv("MAIL_PASSWORD")
 		return config
 	}
 
