@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"project/birthday-mail/internal/config"
+	"strings"
 
 	_ "github.com/lib/pq"
 )
@@ -22,7 +23,8 @@ func Close() error {
 	return database.Close()
 }
 func SelectUsersByDate(date string) ([]User, error) {
-	rows, err := database.Query("select * from users where birth_date = $1", date)
+	arr := strings.Split(date, "-")
+	rows, err := database.Query("SELECT * FROM users WHERE EXTRACT(MONTH FROM birth_date) = $1 AND EXTRACT(DAY FROM birth_date) = $2", arr[1], arr[2])
 	if err != nil {
 		return nil, err
 	}
