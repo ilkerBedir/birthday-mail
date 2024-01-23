@@ -22,5 +22,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	mail.SendMail(users[0])
+	for _, user := range users {
+		mail.SendMail(user)
+	}
 }
