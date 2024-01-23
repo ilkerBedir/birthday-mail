@@ -22,8 +22,7 @@ func SendMail(user database.User) {
 	e.From = config.GetConfig().Mail.User
 	e.To = to
 	e.Subject = "Birthday Mail"
-	//e.Text = []byte("Text Body is, of course, supported!")
-	//e.Text = []byte("Happy Birthday " + user.Name_surname)
+	e.Text = []byte("Happy Birthday " + user.Name_surname)
 	e.AttachFile("birthday.html")
 	err := e.Send("smtp.gmail.com:587", auth)
 	if err != nil {
